@@ -144,7 +144,7 @@ class Quill {
   options: ExpandedOptions;
 
   constructor(container: HTMLElement, options: Options = {}) {
-    this.options = expandConfig(container, options);
+    this.options = expandConfig(container, options, this.root.ownerDocument);
     this.container = this.options.container;
     if (this.container == null) {
       debug.error('Invalid Quill container', container);
@@ -554,7 +554,9 @@ class Quill {
 function expandConfig(
   container: HTMLElement,
   userConfig: Options,
+  containerDocument,
 ): ExpandedOptions {
+  containerDocument = containerDocument || document;
   let expandedConfig = merge(
     {
       container,
@@ -619,7 +621,9 @@ function expandConfig(
   );
   ['bounds', 'container', 'scrollingContainer'].forEach(key => {
     if (typeof expandedConfig[key] === 'string') {
-      expandedConfig[key] = document.querySelector(expandedConfig[key]);
+      expandedConfig[key] = containerDocument.querySelector(
+        expandedConfig[key],
+      );
     }
   });
   expandedConfig.modules = Object.keys(expandedConfig.modules).reduce(
