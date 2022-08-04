@@ -144,6 +144,8 @@ class Quill {
   options: ExpandedOptions;
 
   constructor(container: HTMLElement, options: Options = {}) {
+    this.root = this.addContainer('ql-editor');
+
     this.options = expandConfig(container, options, this.root.ownerDocument);
     this.container = this.options.container;
     if (this.container == null) {
@@ -157,7 +159,6 @@ class Quill {
     this.container.classList.add('ql-container');
     this.container.innerHTML = '';
     instances.set(this.container, this);
-    this.root = this.addContainer('ql-editor');
     this.root.classList.add('ql-blank');
     this.scrollingContainer = this.options.scrollingContainer || this.root;
     this.emitter = new Emitter();
