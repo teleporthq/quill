@@ -1,10 +1,37 @@
-.*
-!.eslintrc.json
-!.eslintignore
+.idea
+.DS_STORE
+*~
+*.pyc
+build/
+dist/
+lib/
+coverage/
+*.log*
+*.sublime-project
+*.sublime-workspace
+.idea
+*.iml
+.vscode
+*.swp
+*.swo
+.history/
+*.zip
 
-/node_modules
-/selenium
-/docs/_site
-/src
-*.d.ts
+# Logs
+logs
 *.log
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+node_modules/
+
+# Output of 'npm pack'
+*.tgz
+
+.changelog
